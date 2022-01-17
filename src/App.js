@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PureChild from './PureChild';
+import Todo from './components/todo';
 
 function App() {
   const [input, setInput] = useState('')
@@ -30,4 +31,26 @@ function App() {
   );
 }
 
-export default App;
+function TodoApp() {
+  const todos = [
+    {
+      id: 'todo-1',
+      title: 'Learn testing',
+      isCompleted: false
+    },
+    {
+      id: 'todo-2',
+      title: 'Do well',
+      isCompleted: true
+    },
+  ]
+  return (
+    <div className="App">
+      {
+        todos.map(todo => <Todo key={todo.id} todo={todo} />)
+      }
+    </div>
+  )
+}
+
+export default TodoApp;
