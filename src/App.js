@@ -1,7 +1,13 @@
+import { useCallback, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import PureChild from './PureChild';
 
 function App() {
+  const [input, setInput] = useState('')
+  const mySubFunc = useCallback(() => setInput(), [setInput])
+  useEffect(() => { console.log('didupdate') })
+  useEffect(() => { console.log('didmount') }, [])
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +23,8 @@ function App() {
         >
           Learn React
         </a>
+        <input onChange={(event) => setInput(event.target.value)} value={input} />
+        <PureChild setInput={mySubFunc} />
       </header>
     </div>
   );
