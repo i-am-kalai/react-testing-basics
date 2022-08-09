@@ -23,8 +23,8 @@ test('should render completed todo', () => {
         title: 'Do well',
         isCompleted: true
     };
-    render(<Todo todo={testTodo} />);
-    const todoElement = screen.getByTestId(testTodo.id)
+    // Just another way of querying rendered elements instead of using 'screen'
+    const todoElement = render(<Todo todo={testTodo} />).queryByTestId(testTodo.id);
     expect(todoElement).toBeInTheDocument()
     expect(todoElement).toHaveTextContent(testTodo.title)
     expect(todoElement).toContainHTML('strike')
