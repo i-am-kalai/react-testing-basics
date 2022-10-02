@@ -1,14 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import PureChild from './PureChild';
-import Todo from './components/todo';
+import { useCallback, useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import PureChild from "./PureChild";
+import Todo from "./components/todo";
 
 function App() {
-  const [input, setInput] = useState('')
-  const mySubFunc = useCallback(() => setInput(), [setInput])
-  useEffect(() => { console.log('didupdate') })
-  useEffect(() => { console.log('didmount') }, [])
+  const [input, setInput] = useState("");
+  const mySubFunc = useCallback(() => setInput(), [setInput]);
+  useEffect(() => {
+    console.log("didupdate");
+  });
+  useEffect(() => {
+    console.log("didmount");
+  }, []);
   return (
     <div className="App">
       <header className="App-header">
@@ -24,7 +28,10 @@ function App() {
         >
           Learn React
         </a>
-        <input onChange={(event) => setInput(event.target.value)} value={input} />
+        <input
+          onChange={(event) => setInput(event.target.value)}
+          value={input}
+        />
         <PureChild setInput={mySubFunc} />
       </header>
     </div>
@@ -34,23 +41,23 @@ function App() {
 function TodoApp() {
   const todos = [
     {
-      id: 'todo-1',
-      title: 'Learn testing',
-      isCompleted: false
+      id: "todo-1",
+      title: "Learn testing",
+      isCompleted: false,
     },
     {
-      id: 'todo-2',
-      title: 'Do well',
-      isCompleted: true
+      id: "todo-2",
+      title: "Do well",
+      isCompleted: true,
     },
-  ]
+  ];
   return (
     <div className="App">
-      {
-        todos.map(todo => <Todo key={todo.id} todo={todo} />)
-      }
+      {todos.map((todo) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
     </div>
-  )
+  );
 }
 
-export default TodoApp;
+export { TodoApp, App };
